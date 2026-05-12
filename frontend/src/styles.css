@@ -1,0 +1,152 @@
+/* ============================================================
+   EmpTrack — Global Design System
+   Angular 19 Employee Management System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg:            #0f0f1a;
+  --surface:       #161627;
+  --surface-2:     #1e1e35;
+  --border:        rgba(255, 255, 255, 0.07);
+  --text:          #e2e8f0;
+  --text-secondary:#64748b;
+  --accent:        #6366f1;
+  --accent-2:      #8b5cf6;
+  --success:       #34d399;
+  --warning:       #fbbf24;
+  --danger:        #f87171;
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #334155; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ── Material Theme Overrides ───────────────────────────────── */
+
+/* Form fields */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-label-text-color:      var(--text-secondary);
+  --mdc-outlined-text-field-input-text-color:      var(--text);
+  --mdc-outlined-text-field-outline-color:         rgba(255,255,255,0.12);
+  --mdc-outlined-text-field-hover-outline-color:   rgba(255,255,255,0.25);
+  --mdc-outlined-text-field-focus-outline-color:   var(--accent);
+  --mdc-outlined-text-field-container-shape:       10px;
+  --mdc-outlined-text-field-input-text-size:       0.9rem;
+  --mat-form-field-container-text-size:            0.9rem;
+}
+
+.mat-mdc-form-field-focus-overlay { background: transparent !important; }
+
+/* Input text color */
+.mat-mdc-input-element { color: var(--text) !important; }
+
+/* Select panel */
+.mat-mdc-select-value-text { color: var(--text) !important; }
+.mat-mdc-select-arrow      { color: var(--text-secondary) !important; }
+
+.mat-mdc-option {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+}
+.mat-mdc-option:hover, .mat-mdc-option.mdc-list-item--selected {
+  background: rgba(99,102,241,0.15) !important;
+  color: #a5b4fc !important;
+}
+
+/* Select panel background */
+.mat-mdc-select-panel { background: var(--surface-2) !important; border: 1px solid var(--border) !important; }
+
+/* Datepicker */
+.mat-datepicker-content {
+  background: var(--surface-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+.mat-calendar-body-cell-content { color: var(--text) !important; }
+.mat-calendar-body-selected      { background: var(--accent) !important; }
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: var(--accent) !important;
+}
+.mat-calendar-arrow        { fill: var(--text-secondary) !important; }
+.mat-calendar-period-button,
+.mat-calendar-next-button,
+.mat-calendar-previous-button { color: var(--text) !important; }
+.mat-calendar-table-header th { color: var(--text-secondary) !important; }
+
+/* Snackbar */
+.snack-success .mdc-snackbar__surface {
+  background: linear-gradient(135deg, #065f46, #047857) !important;
+  color: #ecfdf5 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(16,185,129,0.3) !important;
+}
+.snack-error .mdc-snackbar__surface {
+  background: linear-gradient(135deg, #7f1d1d, #991b1b) !important;
+  color: #fef2f2 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(239,68,68,0.3) !important;
+}
+.mdc-snackbar__action-button { color: rgba(255,255,255,0.8) !important; }
+
+/* Dialog */
+.mdc-dialog__surface {
+  background: var(--surface-2) !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Tooltip */
+.mdc-tooltip__surface {
+  background: #1e293b !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  font-size: 0.78rem !important;
+}
+
+/* Spinner */
+.mat-mdc-progress-spinner circle { stroke: var(--accent) !important; }
+
+/* Icon color */
+.mat-icon { vertical-align: middle; }
+.mat-mdc-icon-button .mat-icon { font-size: 1.2rem; }
+
+/* Prefix/suffix icons */
+.mat-mdc-form-field-icon-suffix mat-icon,
+.mat-mdc-form-field-icon-prefix mat-icon {
+  color: var(--text-secondary) !important;
+  font-size: 1.1rem !important;
+}
+
+/* Error text */
+.mat-mdc-form-field-error { color: var(--danger) !important; font-size: 0.78rem !important; }
+
+/* Label color when focused */
+.mat-mdc-form-field.mat-focused .mdc-floating-label {
+  color: var(--accent) !important;
+}
+
+/* ── Utility Classes ────────────────────────────────────────── */
+.text-primary   { color: var(--text); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent    { color: var(--accent); }
+.text-success   { color: var(--success); }
+.text-danger    { color: var(--danger); }

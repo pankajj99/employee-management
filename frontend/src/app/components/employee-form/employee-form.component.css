@@ -1,0 +1,140 @@
+.form-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: slideUp 0.4s ease;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.form-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  color: #94a3b8 !important;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  transition: color 0.2s, background 0.2s !important;
+}
+.back-btn:hover { color: #f1f5f9 !important; background: rgba(255,255,255,0.06) !important; }
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-subtitle { color: var(--text-secondary); margin: 0.3rem 0 0; font-size: 0.9rem; }
+
+/* ── Loading ─────────────────────────────────────────────────────────────── */
+.loading-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+  gap: 1rem;
+  color: var(--text-secondary);
+}
+
+/* ── Form Card ───────────────────────────────────────────────────────────── */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+.form-section { padding: 1.5rem 0; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-icon { color: #6366f1; }
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.section-divider {
+  border-color: var(--border) !important;
+  margin: 0 !important;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+.form-grid { display: grid; gap: 1.2rem; }
+.two-col   { grid-template-columns: repeat(2, 1fr); }
+
+.form-field { width: 100%; }
+
+/* ── Material Form Field overrides ───────────────────────────────────────── */
+::ng-deep .mat-mdc-form-field-subscript-wrapper { padding: 0 !important; }
+
+/* ── Actions ─────────────────────────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.btn-cancel {
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+  border-radius: 10px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+}
+.btn-cancel:hover { border-color: #94a3b8 !important; color: #f1f5f9 !important; }
+
+.btn-submit {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 0 1.5rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 160px;
+  justify-content: center;
+}
+.btn-submit:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6) !important;
+}
+.btn-submit[disabled] { opacity: 0.6 !important; cursor: not-allowed; }
+
+.spinner-inline { display: inline-block; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 650px) {
+  .form-page  { padding: 1rem; }
+  .form-card  { padding: 1.5rem 1.2rem; }
+  .two-col    { grid-template-columns: 1fr; }
+  .form-title { font-size: 1.3rem; }
+}

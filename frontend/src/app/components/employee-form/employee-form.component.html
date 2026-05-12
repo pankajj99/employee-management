@@ -1,0 +1,133 @@
+<section class="form-page">
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="form-header">
+    <a id="btn-back" mat-icon-button routerLink="/employees" class="back-btn" matTooltip="Back to list">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <div>
+      <h1 class="form-title">
+        {{ isEditMode ? '✏️ Edit Employee' : '➕ Add New Employee' }}
+      </h1>
+      <p class="form-subtitle">
+        {{ isEditMode ? 'Update the employee information below' : 'Fill in the details to add a new team member' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Loading ─────────────────────────────────────────────────────────── -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <mat-spinner diameter="50" color="accent"></mat-spinner>
+    <p>Loading employee data…</p>
+  </div>
+
+  <!-- ── Form ────────────────────────────────────────────────────────────── -->
+  <div *ngIf="!isLoading" class="form-card" [formGroup]="employeeForm">
+
+    <!-- Personal Information -->
+    <div class="form-section">
+      <div class="section-header">
+        <mat-icon class="section-icon">person</mat-icon>
+        <h2 class="section-title">Personal Information</h2>
+      </div>
+      <div class="form-grid two-col">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>First Name *</mat-label>
+          <input id="input-first-name" matInput formControlName="first_name" placeholder="e.g. Aarav"/>
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>{{ getError('first_name') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Last Name *</mat-label>
+          <input id="input-last-name" matInput formControlName="last_name" placeholder="e.g. Sharma"/>
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>{{ getError('last_name') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email Address *</mat-label>
+          <input id="input-email" matInput formControlName="email" type="email" placeholder="name@company.com"/>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error>{{ getError('email') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Phone Number</mat-label>
+          <input id="input-phone" matInput formControlName="phone" placeholder="e.g. 9876543210"/>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error>{{ getError('phone') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-divider class="section-divider"></mat-divider>
+
+    <!-- Work Details -->
+    <div class="form-section">
+      <div class="section-header">
+        <mat-icon class="section-icon">work</mat-icon>
+        <h2 class="section-title">Work Details</h2>
+      </div>
+      <div class="form-grid two-col">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Department *</mat-label>
+          <mat-select id="select-department" formControlName="department">
+            <mat-option *ngFor="let dept of departments" [value]="dept">{{ dept }}</mat-option>
+          </mat-select>
+          <mat-icon matSuffix>business</mat-icon>
+          <mat-error>{{ getError('department') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Position / Role *</mat-label>
+          <input id="input-position" matInput formControlName="position" placeholder="e.g. Software Engineer"/>
+          <mat-icon matSuffix>engineering</mat-icon>
+          <mat-error>{{ getError('position') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Annual Salary (₹) *</mat-label>
+          <input id="input-salary" matInput formControlName="salary" type="number" min="0" placeholder="e.g. 75000"/>
+          <span matPrefix>₹&nbsp;</span>
+          <mat-error>{{ getError('salary') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Hire Date *</mat-label>
+          <input id="input-hire-date" matInput formControlName="hire_date"
+                 [matDatepicker]="picker" [max]="maxDate" placeholder="DD/MM/YYYY"/>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>{{ getError('hire_date') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Employment Status *</mat-label>
+          <mat-select id="select-status" formControlName="status">
+            <mat-option *ngFor="let s of statuses" [value]="s">{{ s }}</mat-option>
+          </mat-select>
+          <mat-icon matSuffix>toggle_on</mat-icon>
+          <mat-error>{{ getError('status') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- ── Actions ─────────────────────────────────────────────────────────── -->
+    <mat-divider class="section-divider"></mat-divider>
+    <div class="form-actions">
+      <a mat-stroked-button id="btn-cancel-form" routerLink="/employees" class="btn-cancel">
+        <mat-icon>close</mat-icon> Cancel
+      </a>
+      <button mat-raised-button id="btn-submit-form"
+              class="btn-submit"
+              [disabled]="isSaving"
+              (click)="onSubmit()">
+        <mat-spinner *ngIf="isSaving" diameter="20" class="spinner-inline"></mat-spinner>
+        <mat-icon *ngIf="!isSaving">{{ isEditMode ? 'save' : 'person_add' }}</mat-icon>
+        {{ isSaving ? 'Saving…' : (isEditMode ? 'Update Employee' : 'Add Employee') }}
+      </button>
+    </div>
+  </div>
+
+</section>
