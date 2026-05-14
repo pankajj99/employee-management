@@ -73,7 +73,7 @@ Edit `.env` with your MySQL credentials:
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=YOUR_MYSQL_PASSWORD   # ← Update this
+DB_PASSWORD=997448  
 DB_NAME=employee_db
 PORT=3000
 ```
